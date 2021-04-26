@@ -1,5 +1,4 @@
 const form = document.querySelector('form');
-const plitka = document.querySelector('.plitka'); // класс 
 const calculateTarget = document.querySelector('.calculate_target');
 const targetValue = document.querySelector('.target_value');
 const targetInput = document.querySelector('.target_input');
@@ -11,7 +10,24 @@ const startSumm = document.querySelector('.start_summ'); // стартовая �
 const percent = document.querySelector('.percent'); // процент
 const buttonShowSchem = document.querySelector('.show_schem'); // кнока рассчета
 const showSumm = document.querySelector('.replenishment_summ'); // сюда запишу результат
+const addGoal = document.querySelector('.goal_button');
+const plitka = document.querySelector('.plitka');
+const goalSetting = document.querySelector('.goal_setting');
+const deleteTar = document.querySelector('.deleteTar');
 let paymentSchedule = 0;
+
+function addNewGoal() {
+    let newPlitka = plitka.cloneNode(true);
+    goalSetting.append(newPlitka);
+}
+
+addGoal.addEventListener('click', () => {
+    addNewGoal()
+})
+
+deleteTar.addEventListener('click', () => {
+    plitka.remove();
+})
 
 function createListDeposit() {
     let arr1 = [1, 2, 3, 4, 5];
