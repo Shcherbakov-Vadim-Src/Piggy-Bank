@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Piggy Bank</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="goal_setting">
+            <ul>
+                <li class="goal_button"><button class="goal_button">Добавить цель</button></li>
+            </ul>
+            <div class="plitka">
+                <ul>    
+                    <li class="goal_name">
+                        <input type="text"><button>Удалить цель</button>
+                    </li>
+                    <li class="summ">
+                        <input type="number"> <!--<button>еще кнопка</button> -->
+                    </li>
+                </ul>
+                <p class="replenishment_summ">Здесь будет сумма пополнения</p>
+                <button class="show_schem">Показать график</button>
+            </div>
+        </div>
+        <div class="filling_form">
+            <form>
+                <lable>Введите название цели:<br>
+                    <input class="goal_name" name="goal_name" type="text">
+                </lable><br>
+                <lable>Введите сумму цели:<br>
+                    <input class="goal_summ" name="goal_summ" type="number">
+                </lable><br>
+                <lable>Введите срок достижения цели:<br>
+                    <input class="goal_term" name="goal_term" type="text">
+                </lable><br>
+                <lable>Введите стартовую сумму:<br>
+                    <input class="start_summ" name="start_summ" type="number">
+                </lable><br>
+                <lable>Введите процент по вкладу:<br>
+                    <input class="percent" name="percent" type="number">
+                </lable><br>
+                <button class="show_schem" name="show_schem">Рассчитать цель</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script defer type="text/javascript" src="./runner.js"></script>
+</html>

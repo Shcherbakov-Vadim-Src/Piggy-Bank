@@ -1,0 +1,43 @@
+.conteiner {
+    border: 1px solid rgb(102, 100, 100);
+    width: 850px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.goal_button {
+    width: 178px;
+}
+
+.goal_setting {
+    border: 2px solid black;
+    width: 400px;
+    padding: 30px;
+}
+
+.filling_form {
+    border: 2px solid black;
+    width: 400px;
+    padding: 30px;
+    margin: 0 0 0 10px;
+}
+
+.show_schem {
+    margin: 10px 0 0 0;
+}
+
+.plitka {
+    border: 1px solid rgb(148, 141, 141);
+    padding: 5px;
+}
+
+.show_schem {
+    margin: 10px 0 0 60px;
+    width: 178px;
+}
+
+.replenishment_summ {
+    margin: 0 0 0 10px;
+}
