@@ -22,8 +22,10 @@
                         <input type="number"> <!--<button>еще кнопка</button> -->
                     </li>
                 </ul>
-                <p class="replenishment_summ">Здесь будет сумма пополнения</p>
-                <button class="show_schem">Показать график</button>
+                <p class="replenishment_summ">Здесь будет сумма пополнения и % по вкладу</p>
+                <input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31">
+                <input class="percent" name="percent" type="number">
+                <button class="show_grafik">Показать график</button>
             </div>
         </div>
         <div class="filling_form">
@@ -35,7 +37,7 @@
                     <input class="goal_summ" name="goal_summ" type="number">
                 </lable><br>
                 <lable>Введите срок достижения цели:<br>
-                    <input class="goal_term" name="goal_term" type="text">
+                    <input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31">
                 </lable><br>
                 <lable>Введите стартовую сумму:<br>
                     <input class="start_summ" name="start_summ" type="number">
