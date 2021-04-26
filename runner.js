@@ -1,5 +1,6 @@
 const form = document.querySelector('form');
 const calculateTarget = document.querySelector('.calculate_target');
+const targetValue = document.querySelector('.target_value');
 const targetInput = document.querySelector('.target_input');
 const summInput = document.querySelector('.target_summ');
 const goalName = document.querySelector('.goal_name');
@@ -13,6 +14,7 @@ const addGoal = document.querySelector('.goal_button');
 const plitka = document.querySelector('.plitka');
 const goalSetting = document.querySelector('.goal_setting');
 const deleteTar = document.querySelector('.deleteTar');
+let paymentSchedule = 0;
 
 function addNewGoal() {
     let newPlitka = plitka.cloneNode(true);
@@ -26,3 +28,41 @@ addGoal.addEventListener('click', () => {
 deleteTar.addEventListener('click', () => {
     plitka.remove();
 })
+
+function createListDeposit() {
+    let arr1 = [1, 2, 3, 4, 5];
+    if (paymentSchedule) {
+        paymentSchedule.remove();
+        console.log(paymentSchedule);
+        paymentSchedule = 0;
+    } else {
+        paymentSchedule = document.createElement('ul');
+        paymentSchedule.classList.add('pay');
+        plitka.append(paymentSchedule);
+        for (let i = 0; i < arr1.length; i++) {
+            let paymentSchedule1 = document.createElement('li');
+            paymentSchedule1.innerText = `${arr1[i]}`;
+            console.log(paymentSchedule1);
+            paymentSchedule.append(paymentSchedule1);
+        }
+    }
+}
+
+
+buttonShowSchem.addEventListener('click', () => {
+    createListDeposit();
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let data = new FormData(event.target);
+    let name = data.get('goal_name');
+    let summ = data.get('goal_summ');
+    let term = data.get('goal_term');
+    let percents = data.get('percent');
+    console.dir(term)
+    targetInput.value = name;
+    summInput.value = summ;
+    goalTerm.value = term;
+    percent.value = percents;
+});
