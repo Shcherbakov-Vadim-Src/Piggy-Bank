@@ -8,7 +8,7 @@ const goalTerm = document.querySelector('.goal_term'); // срок
 const startSumm = document.querySelector('.start_summ'); // стартовая сумма
 const percent = document.querySelector('.percent'); // процент
 const buttonShowSchem = document.querySelector('.show_schem'); // кнока рассчета
-const showSumm = document.querySelector('.replenishment_summ'); // сюда запишу результат
+// const showSumm = document.querySelector('.replenishment_summ'); // сюда запишу результат
 const addGoal = document.querySelector('.goal_button');
 const plitka = document.querySelector('.plitka');
 const goalSetting = document.querySelector('.goal_setting');
@@ -16,15 +16,25 @@ const deleteTar = document.querySelector('.deleteTar');
 const form = document.querySelector('form');
 let paymentSchedule = 0;
 let resultCorrect = [];
+let aname = 0;
+let summ = 0;
+let term = 0;
+let percents = 0; 
+let variableStartSumm = 0;
+let accumSummPercent = 0;
+let averageAmount;
+let firstDepositAmount;
+let flag = 'true';
 
  
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     let data = new FormData(event.target);
-    console.log(data.get('goal_summ'));
-    console.log(data.get('goal_term'));
-    console.log(data.get('start_summ'));
-    console.log(data.get('percent'));
+    aname = data.get('goal_name');
+    summ = data.get('goal_summ');
+    term = data.get('goal_term');
+    variableStartSumm = data.get('start_summ');
+    percents = data.get('percent');
     console.log(data.get('show_schem'));
 
     let arrDateTerm = data.get('goal_term').split('-');
@@ -38,7 +48,7 @@ form.addEventListener('submit', (event) => {
     let termYear = (differenceInDays / 30).toFixed(0);           // количество месяцев выплат % по вкладу    
     let remainderSumm = data.get('goal_summ') - data.get('start_summ');  // разница между суммами накопления и стартовой
     let monthlyPay = remainderSumm / termYear;  // вычисляю сколько понадобится в месяц без учета % по вкладу
-    let percentSumm = monthlyPay * data.get('percent') * 30 / 365 / 100;  // сумма % по вкладу за первый месяц 
+    // let percentSumm = monthlyPay * data.get('percent') * 30 / 365 / 100;  // сумма % по вкладу за первый месяц 
     
 
     let newSummEveryMonth = monthlyPay;    
@@ -50,7 +60,7 @@ form.addEventListener('submit', (event) => {
         resultArrPercent.push(newPercentSumm.toFixed(2));
         newSummEveryMonth += newPercentSumm;
     }
-    let accumSummPercent = 0;
+    
     let correctSumm = monthlyPay;
     for (let e = 0; e < termYear; e++) {    //  массив график пополнения
         resultCorrect.push(correctSumm);
@@ -66,62 +76,64 @@ form.addEventListener('submit', (event) => {
     console.log('массив - график платежей', resultCorrect);
     console.log('проверочная сумма накопления', accum);   
     console.log('сумма процентов по вкладу за срок накопления', accumSummPercent);
-
-    showSumm.innerText = resultValueofFirstMonth.toFixed(2); // вывожу первую сумму пополнения
-
+    firstDepositAmount = resultValueofFirstMonth.toFixed(2);
+    addNewGoal();
+    const showSumm = document.querySelector('.replenishment_summ');
+    
+    // showSumm.innerText = resultValueofFirstMonth.toFixed(2); // вывожу первую сумму пополнения    
+    // console.log(showSumm)
+    // accumSummPercent = 0;
+    // averageAmount = showSumm.innerText;
 });
 
 function addNewGoal() {
-    let newPlitka = plitka.cloneNode(true);
-    newPlitka.lastElementChild.addEventListener('click', () => {
-        createListDeposit();
+    // let newPlitka = plitka.cloneNode(true);
+    let newPlitka = document.createElement('div')
+    newPlitka.classList.add('plitka')
+    newPlitka.innerHTML = '<ul><li class="goal_name"><input type="text" class="target_input"><button class="deleteTar">Удалить цель</button></li><li class="summ"><input type="number" class="target_summ"><input type="text" class="target_startSumm"></li></ul><p class="replenishment_summ"></p><p class="percentValue"></p><input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31"><input class="percent" name="percent" type="number"><button class="show_schem">Показать график</button>'
+    goalSetting.append(newPlitka);
+    console.log(newPlitka.firstElementChild.firstElementChild.lastElementChild)    
+    newPlitka.firstElementChild.firstElementChild.firstElementChild.value = aname;
+    newPlitka.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.value = summ;
+    newPlitka.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.value = variableStartSumm;
+    newPlitka.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.value = term;
+    console.log(term)
+    newPlitka.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.value = percents;
+    console.log(newPlitka.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling)
+    newPlitka.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText = averageAmount;
+    newPlitka.firstElementChild.nextElementSibling.innerText = firstDepositAmount;
+    newPlitka.firstElementChild.nextElementSibling.nextElementSibling.innerText = accumSummPercent;    
+    newPlitka.lastElementChild.addEventListener('click', (e) => {        
+        openListDeposit(e);       
     });
     goalSetting.append(newPlitka);
 }
 
-addGoal.addEventListener('click', () => {
-    addNewGoal()
-})
-
-deleteTar.addEventListener('click', () => {
-    plitka.remove();
-})
-
-function createListDeposit() {      
-    if (!resultCorrect.length) {
-        alert('Введите значения в форму') 
-    } else if (paymentSchedule) {
-        paymentSchedule.remove();
-        console.log(paymentSchedule);
-        paymentSchedule = 0;
-        resultCorrect = [];
-    } else {
-        paymentSchedule = document.createElement('ul');
-        paymentSchedule.classList.add('pay');
-        plitka.append(paymentSchedule);
-        for (let i = 0; i < resultCorrect.length; i++) {
-            let paymentSchedule1 = document.createElement('li');
-            paymentSchedule1.innerText = `${resultCorrect[i]}`;
-            console.log(resultCorrect[i]);
-            paymentSchedule.append(paymentSchedule1);
-        }
+function openListDeposit(e) {       
+    // if (!resultCorrect.length) {
+        // alert('Введите значения в форму') 
+    if (resultCorrect.length) {   
+        console.log(flag)     
+        createListDeposit(e);      
+        resultCorrect = [];        
+    } else if (e.target.nextElementSibling.style.display === 'block') {
+        e.target.nextElementSibling.style.display = 'none';  
+        console.log(e.target.nextElementSibling)               
+    } else if (e.target.nextElementSibling.style.display === 'none') {
+        e.target.nextElementSibling.style.display = 'block';       
     }
 }
 
+function createListDeposit(e) {
+    paymentSchedule = document.createElement('ul');
+    paymentSchedule.style.display = 'block';      
+    paymentSchedule.classList.add('pay');        
+    e.target.parentElement.append(paymentSchedule);       
+    for (let i = 0; i < resultCorrect.length; i++) {
+        let paymentSchedule1 = document.createElement('li');
+        paymentSchedule1.innerText = `${resultCorrect[i]}`;            
+        e.target.nextElementSibling.append(paymentSchedule1);
+    }   
+}
 
-buttonShowSchem.addEventListener('click', () => {
-    createListDeposit();
-});
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    let data = new FormData(event.target);
-    let name = data.get('goal_name');
-    let summ = data.get('goal_summ');
-    let term = data.get('goal_term');
-    let percents = data.get('percent');    
-    targetInput.value = name;
-    summInput.value = summ;
-    goalTerm.value = term;
-    percent.value = percents;
-});
