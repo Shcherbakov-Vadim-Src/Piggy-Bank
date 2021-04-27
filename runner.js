@@ -15,6 +15,7 @@ const goalSetting = document.querySelector('.goal_setting');
 const deleteTar = document.querySelector('.deleteTar');
 const form = document.querySelector('form');
 let paymentSchedule = 0;
+let resultCorrect = [];
 
  
 form.addEventListener('submit', (event) => {
@@ -34,15 +35,13 @@ form.addEventListener('submit', (event) => {
     let differenceInTime = dateTo.getTime() - dateFrom.getTime();  // получил количество милисекунд
     let differenceInDays = differenceInTime / (1000 * 3600 * 24); // пересчитал в дни 
     //console.log(differenceInDays);                             // получил срок между двумя датами
-    let termYear = (differenceInDays / 30).toFixed(0);           // количество месяцев выплат % по вкладу
-    console.log(termYear);
+    let termYear = (differenceInDays / 30).toFixed(0);           // количество месяцев выплат % по вкладу    
     let remainderSumm = data.get('goal_summ') - data.get('start_summ');  // разница между суммами накопления и стартовой
     let monthlyPay = remainderSumm / termYear;  // вычисляю сколько понадобится в месяц без учета % по вкладу
     let percentSumm = monthlyPay * data.get('percent') * 30 / 365 / 100;  // сумма % по вкладу за первый месяц 
-    console.log(percentSumm);
+    
 
-    let newSummEveryMonth = monthlyPay;
-    let resultCorrect = [];
+    let newSummEveryMonth = monthlyPay;    
     let resultValueofFirstMonth = monthlyPay;
     let resultArrPercent = [];
 
@@ -74,6 +73,9 @@ form.addEventListener('submit', (event) => {
 
 function addNewGoal() {
     let newPlitka = plitka.cloneNode(true);
+    newPlitka.lastElementChild.addEventListener('click', () => {
+        createListDeposit();
+    });
     goalSetting.append(newPlitka);
 }
 
@@ -85,20 +87,22 @@ deleteTar.addEventListener('click', () => {
     plitka.remove();
 })
 
-function createListDeposit() {
-    let arr1 = [1, 2, 3, 4, 5];
-    if (paymentSchedule) {
+function createListDeposit() {      
+    if (!resultCorrect.length) {
+        alert('Введите значения в форму') 
+    } else if (paymentSchedule) {
         paymentSchedule.remove();
         console.log(paymentSchedule);
         paymentSchedule = 0;
+        resultCorrect = [];
     } else {
         paymentSchedule = document.createElement('ul');
         paymentSchedule.classList.add('pay');
         plitka.append(paymentSchedule);
-        for (let i = 0; i < arr1.length; i++) {
+        for (let i = 0; i < resultCorrect.length; i++) {
             let paymentSchedule1 = document.createElement('li');
-            paymentSchedule1.innerText = `${arr1[i]}`;
-            console.log(paymentSchedule1);
+            paymentSchedule1.innerText = `${resultCorrect[i]}`;
+            console.log(resultCorrect[i]);
             paymentSchedule.append(paymentSchedule1);
         }
     }
@@ -115,8 +119,7 @@ form.addEventListener('submit', (event) => {
     let name = data.get('goal_name');
     let summ = data.get('goal_summ');
     let term = data.get('goal_term');
-    let percents = data.get('percent');
-    console.dir(term)
+    let percents = data.get('percent');    
     targetInput.value = name;
     summInput.value = summ;
     goalTerm.value = term;
