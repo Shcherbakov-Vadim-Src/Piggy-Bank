@@ -8,7 +8,6 @@ const goalTerm = document.querySelector('.goal_term'); // срок
 const startSumm = document.querySelector('.start_summ'); // стартовая сумма
 const percent = document.querySelector('.percent'); // процент
 const buttonShowSchem = document.querySelector('.show_schem'); // кнока рассчета
-// const showSumm = document.querySelector('.replenishment_summ'); // сюда запишу результат
 const addGoal = document.querySelector('.goal_button');
 const plitka = document.querySelector('.plitka');
 const goalSetting = document.querySelector('.goal_this');
@@ -45,13 +44,12 @@ function calculateDepositValues(summ, term, startSumm, percents, flag, e){
     let dateTo = new Date(`${arrDateTerm[1]}/${arrDateTerm[2]}/${arrDateTerm[0]}`);
     let differenceInTime = dateTo.getTime() - dateFrom.getTime();  // получил количество милисекунд
     let differenceInDays = differenceInTime / (1000 * 3600 * 24); // пересчитал в дни 
-    //console.log(differenceInDays);                             // получил срок между двумя датами
+    
     let termYear = (differenceInDays / 30).toFixed(0);           // количество месяцев выплат % по вкладу    
     let remainderSumm = summ - startSumm;  // разница между суммами накопления и стартовой
     
     let monthlyPay = remainderSumm / (+termYear === -0?termYear = 1:termYear); // вычисляю сколько понадобится в месяц без учета % по вкладу
-    // let percentSumm = monthlyPay * data.get('percent') * 30 / 365 / 100;  // сумма % по вкладу за первый месяц 
-    // console.log(+termYear)
+
     let newSummEveryMonth = monthlyPay;    
     let resultValueofFirstMonth = monthlyPay;
     let resultArrPercent = [];
@@ -61,11 +59,11 @@ function calculateDepositValues(summ, term, startSumm, percents, flag, e){
         newSummEveryMonth += newPercentSumm;
     }
     let correctSumm = monthlyPay;
-    // console.log(correctSumm)
+
     for (let e = 0; e < termYear; e++) {    //  массив график пополнения
         resultCorrect.push(correctSumm);
     }
-    // console.log(resultCorrect)
+
     for (let y = 0; y < resultArrPercent.length; y++) {    //  проценты по вкладам
         accumSummPercent += +resultArrPercent[y];        
     }
@@ -75,11 +73,8 @@ function calculateDepositValues(summ, term, startSumm, percents, flag, e){
         accum += resultCorrect[h];
     }
     resultCorrect[resultCorrect.length - 1] = resultCorrect[resultCorrect.length - 1] - accumSummPercent; // последний платеж избавляется от суммы процентов
-    // console.log('массив - график платежей', resultCorrect);
-    // console.log('проверочная сумма накопления', accum);   
-    // console.log('сумма процентов по вкладу за срок накопления', accumSummPercent);
     firstDepositAmount = resultValueofFirstMonth.toFixed(2);
-    // console.log(resultCorrect.length)
+
     addNewGoal(flag, startSumm);
     changingTheGoal(e, flag, startSumm)
     resultCorrect = [];
@@ -132,7 +127,7 @@ function addNewGoal(flag, startSumm) {
             flag = 'folse';
             calculateDepositValues(summ, term, variableStartSumm, percents, flag, e)             
         });
-        
+
         newPlitka[7].addEventListener('click', (e) => {
             newPlitka.remove();       
         });
