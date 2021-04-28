@@ -159,3 +159,4 @@ function createListDeposit(newPlitka, flag) {
         newListDeposit.append(newListDeposit1);
     }   
 }
+// заебал давай работай.
