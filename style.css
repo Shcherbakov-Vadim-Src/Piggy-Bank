@@ -231,3 +231,75 @@ li:before {
     content: "-";
     padding-right: 10px;
 }
+
+/* screen  */
+
+@media (min-width: 320px) and (max-width: 833px) { 
+    
+    h1 {
+        font-size: 75px;
+        margin: -299px 0 8px 46px;
+        color: rgb(155, 146, 113);
+        width: 700px;
+    }
+    
+    h2 {
+        font-size: 49px;
+        margin: 8px 0 40px 152px;
+        color: rgb(167, 159, 130);
+        width: 400px;
+    }
+    
+    .spitch {
+        font-size: 17px;
+        margin: -19px 0 55px 136px;
+        color: rgb(167, 159, 130);
+        width: 500px;
+    }
+
+    .phone_1 {
+        width: 400px;
+        margin: 16px 0 0 780px;
+    }
+    
+    .footer {
+        margin: 0 0 0 300px;
+    }
+    
+    .phone_2 {
+        margin: 185px 0 0 67px;
+        width: 411px;
+    }
+    
+    .phone_3 {
+        margin: -400px 0 0 707px;
+        width: 511px;
+    }
+
+    .cards {
+        width: 200px;
+        opacity: 1.0;
+        margin: 0 0 -166px -1171px;
+    }
+
+    .headerUP {
+        margin: 0 0 0 0;
+    }
+
+    .footer {
+        margin: 0 0 0 0;
+    }
+
+    .conteiner {
+        border: 1px solid rgb(250, 247, 247);
+        width: 930px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        margin: 31px 0 30px 216px;
+        border-radius: 30px;
+        height: 100%;
+        flex-wrap: wrap;
+    }
+
+}
