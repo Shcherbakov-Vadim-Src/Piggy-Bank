@@ -24,22 +24,22 @@ let variableStartSumm = 0;
 let accumSummPercent = 0;
 let averageAmount;
 let firstDepositAmount;
-let flag = 'true';
-
-
-
+let flag = 'true'
 
  
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     let data = new FormData(event.target);
     aname = data.get('goal_name');
-    summ = data.get('goal_summ');
+    summ = +data.get('goal_summ');
     term = data.get('goal_term');
-    variableStartSumm = data.get('start_summ');
-    percents = data.get('percent');    
+    variableStartSumm = +data.get('start_summ');
+    percents = +data.get('percent'); 
+    calculateDepositValues(+data.get('goal_summ'), data.get('goal_term'), +data.get('start_summ'), +data.get('percent'), flag)
+})
 
-    let arrDateTerm = data.get('goal_term').split('-');
+function calculateDepositValues(summ, term, startSumm, percents, flag, e){
+    let arrDateTerm = term.split('-');
     let date = new Date();
     // расчет № дней между двумя датами
     let dateFrom = new Date(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`);
@@ -48,7 +48,8 @@ form.addEventListener('submit', (event) => {
     let differenceInDays = differenceInTime / (1000 * 3600 * 24); // пересчитал в дни 
     //console.log(differenceInDays);                             // получил срок между двумя датами
     let termYear = (differenceInDays / 30).toFixed(0);           // количество месяцев выплат % по вкладу    
-    let remainderSumm = data.get('goal_summ') - data.get('start_summ');  // разница между суммами накопления и стартовой
+    let remainderSumm = summ - startSumm;  // разница между суммами накопления и стартовой
+    console.log(remainderSumm, summ, startSumm )
     let monthlyPay = remainderSumm / (+termYear === -0?termYear = 1:termYear); // вычисляю сколько понадобится в месяц без учета % по вкладу
     // let percentSumm = monthlyPay * data.get('percent') * 30 / 365 / 100;  // сумма % по вкладу за первый месяц 
     // console.log(+termYear)
@@ -58,7 +59,7 @@ form.addEventListener('submit', (event) => {
     let resultArrPercent = [];
 
     for (let i = 0; i < termYear; i++){
-        let newPercentSumm = newSummEveryMonth * data.get('percent') * 30 / 365 / 100;  // к каждой сумме пополнения расчитываю %
+        let newPercentSumm = newSummEveryMonth * percents * 30 / 365 / 100;  // к каждой сумме пополнения расчитываю %
         resultArrPercent.push(newPercentSumm.toFixed(2));
         newSummEveryMonth += newPercentSumm;
     }
@@ -70,10 +71,12 @@ form.addEventListener('submit', (event) => {
     }
     // console.log(resultCorrect)
     for (let y = 0; y < resultArrPercent.length; y++) {    //  проценты по вкладам
-        accumSummPercent += +resultArrPercent[y];
-        console.log(accumSummPercent)
-        console.log(resultArrPercent)
+        accumSummPercent += +resultArrPercent[y];        
     }
+
+    console.log(accumSummPercent)
+    console.log(resultArrPercent)
+
     let accum = 0;
     for (let h = 0; h < resultCorrect.length; h++) {   // сладываю все суммы накопления
         accum += resultCorrect[h];
@@ -84,45 +87,87 @@ form.addEventListener('submit', (event) => {
     // console.log('сумма процентов по вкладу за срок накопления', accumSummPercent);
     firstDepositAmount = resultValueofFirstMonth.toFixed(2);
     // console.log(resultCorrect.length)
-    addNewGoal();
+    addNewGoal(flag, startSumm);
+    changingTheGoal(e, flag, startSumm)
     resultCorrect = [];
     accumSummPercent = 0;
     const showSumm = document.querySelector('.replenishment_summ');   
-});
+};
 
-function addNewGoal() {
-    let newPlitka = document.createElement('form')
-    newPlitka.classList.add('plitka')
-    newPlitka.innerHTML = '<input type="text" class="target_input" name = "target"><button type = "button" class="deleteTar">Удалить цель</button><input type="number" class="target_summ"><input class="replenishment_summ" name = "replenishment_summ"><input class="percentValue" name = "percentValue"><input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31"><input class="percent" name="percent" type="number"><button class="show_schem" type = "button">Показать график</button></class=>'
-    goalSetting.append(newPlitka);     
-    newPlitka[0].value = aname;
-    newPlitka[2].value = summ;
-    newPlitka[3].value = firstDepositAmount;
-    newPlitka[4].value = accumSummPercent;
-    newPlitka[5].value = term;
-    newPlitka[6].value = percents;
+function changingTheGoal(e, flag, startSumm) {
+    if (flag === 'folse') {
+        createListDeposit(e.target.parentElement, flag)
+        e.target.parentElement[4].value = accumSummPercent;
+        e.target.parentElement[3].value = startSumm;
+    }
+}
 
-    createListDeposit(newPlitka)
+ 
 
-    newPlitka[7].addEventListener('click', (e) => {        
-        openListDeposit(e);       
-    });   
+function addNewGoal(flag, startSumm) {
+    if (flag === 'true') {
+        let newPlitka = document.createElement('form')
+        newPlitka.classList.add('plitka')
+        newPlitka.innerHTML = '<input type="text" class="target_input" name = "target"><button type = "button" class="deleteTar">Удалить цель</button><input type="number" class="target_summ"><input class="replenishment_summ" name = "replenishment_summ"><input class="percentValue" name = "percentValue"><input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31"><input class="percent" name="percent" type="number"><button class="show_schem" type = "button">Показать график</button></class=>'
+        goalSetting.append(newPlitka);     
+        newPlitka[0].value = aname;
+        newPlitka[2].value = summ;
+        newPlitka[3].value = startSumm;
+        newPlitka[4].value = accumSummPercent;
+        newPlitka[5].value = term;
+        newPlitka[6].value = percents;
+
+        createListDeposit(newPlitka)
+
+        newPlitka[7].addEventListener('click', (e) => {        
+            openListDeposit(e);       
+        });   
+
+        newPlitka[2].addEventListener('input', (e) => {
+            summ = +e.target.value;            
+            flag = 'folse';
+            calculateDepositValues(summ, term, variableStartSumm, percents, flag, e)             
+        });
+
+        newPlitka[3].addEventListener('input', (e) => {                     
+            startSumm = +e.target.value;
+            flag = 'folse';
+            calculateDepositValues(summ, term, startSumm, percents, flag, e)             
+        });
+
+        newPlitka[6].addEventListener('input', (e) => {
+            percents = newPlitka[6].value;                      
+            flag = 'folse';
+            calculateDepositValues(summ, term, variableStartSumm, percents, flag, e)             
+        });
+
+        newPlitka[5].addEventListener('input', (e) => {
+            term = newPlitka[5].value;                      
+            flag = 'folse';
+            calculateDepositValues(summ, term, variableStartSumm, percents, flag, e)             
+        });
+
+    }
 }
 
 function openListDeposit(e) { 
     console.log(resultCorrect)      
     if (e.target.nextElementSibling.style.display === 'none') {
-        e.target.nextElementSibling.style.display = 'block';  
-        console.log(e.target.nextElementSibling)               
+        e.target.nextElementSibling.style.display = 'block';                       
     } else if (e.target.nextElementSibling.style.display === 'block') {
         e.target.nextElementSibling.style.display = 'none';       
     }
 }
 
-function createListDeposit(newPlitka) {
+function createListDeposit(newPlitka, flag) {    
     newListDeposit = document.createElement('ul');
     newListDeposit.style.display = 'none';      
-    newListDeposit.classList.add('pay');        
+    newListDeposit.classList.add('pay');
+    console.log(flag)
+    if (flag === 'folse'){
+        console.log(newPlitka.lastElementChild)
+        newPlitka.lastElementChild.remove()
+    }
     newPlitka.append(newListDeposit);       
     for (let i = 0; i < resultCorrect.length; i++) {
         let newListDeposit1 = document.createElement('li');
