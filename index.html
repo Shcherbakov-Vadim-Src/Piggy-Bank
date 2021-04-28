@@ -10,49 +10,39 @@
 </head>
 
 <body>
-    <div class="conteiner">
-         <div class="goal_setting">
-            <!-- <ul>
-                <li class="goal_button"><button class="goal_button">Добавить цель</button></li>
-            </ul>
-             <div class="plitka">
-                <ul>
-                    <li class="goal_name">
-                        <input type="text" class="target_input"><button class="deleteTar">Удалить цель</button>
-                    </li>
-                    <li class="summ">
-                        <input type="number" class="target_summ">
-                    </li>
-                </ul>
-                <p class="replenishment_summ">Здесь будет сумма пополнения и % по вкладу</p>
-                <input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31">
-                <input class="percent" name="percent" type="number">
-                <button class="show_schem">Показать график</button>
-            </div>  -->
+    <div class="conteiner_boss">
+        <img class="headerUP" src="./pictures/img_header.jpg">
+        <img class="phone_1" src="./pictures/pone_with_card.svg">
+        <img class="cards" src="./pictures/cards.svg" alt="cards">
+        <h1>Mindful your money</h1>
+        <h2>with Piggy Bank</h2>
+        <p class="spitch">See how we can help with your money managament.</p>
+        <div class="conteiner goal_this">
+            <div class="filling_form">
+                <form>
+                    <lable class="header_input one">Введите название цели:<br>
+                        <input class="goal_name" name="goal_name" type="text">
+                    </lable><br>
+                    <lable class="header_input two">Введите сумму цели:<br>
+                        <input class="goal_summ" name="goal_summ" type="number">
+                    </lable><br>
+                    <lable class="header_input three">Введите срок достижения цели:<br>
+                        <input class="goal_term_sub" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31">
+                    </lable><br>
+                    <lable class="header_input four">Введите стартовую сумму:<br>
+                        <input class="start_summ" name="start_summ" type="number">
+                    </lable><br>
+                    <lable class="header_input five">Введите процент по вкладу:<br>
+                        <input class="percent" name="percent" type="number">
+                    </lable><br>
+                    <button class="calculate_target" name="calculate_target">Рассчитать цель</button>
+                </form>
+            </div>
         </div>
-        <div class="filling_form">
-            <form>
-                <lable>Введите название цели:<br>
-                    <input class="goal_name" name="goal_name" type="text" value = "Zahar">
-                </lable><br>
-                <lable>Введите сумму цели:<br>
-                    <input class="goal_summ" name="goal_summ" type="number" value = "1000000">
-                </lable><br>
-                <lable>Введите срок достижения цели:<br>
-                    <input class="goal_term" type="date" id="start" name="goal_term" value="2021-04-26" min="2021-01-01" max="2025-12-31">
-                </lable><br>
-                <lable>Введите стартовую сумму:<br>
-                    <input class="start_summ" name="start_summ" type="number" value = "10000">
-                </lable><br>
-                <lable>Введите процент по вкладу:<br>
-                    <input class="percent" name="percent" type="number" value = "5">
-                </lable><br>
-                <button class="calculate_target" name="calculate_target">Рассчитать цель</button>
-            </form>
-        </div>
+        <img class="phone_2" src="./pictures/phones_1.svg">
+        <img class="phone_3" src="./pictures/phone_3.svg">
+        <img class="footer" src="./pictures/footer.svg">
     </div>
-
 </body>
 <script defer type="text/javascript" src="./runner.js"></script>
-
 </html>

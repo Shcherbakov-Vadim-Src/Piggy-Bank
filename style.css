@@ -1,44 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.conteiner_boss {
+    margin: 0 auto;
+}
+
 .conteiner {
-    border: 1px solid rgb(102, 100, 100);
-    width: 850px;
+    border: 1px solid rgb(250, 247, 247);
+    width: 930px;
     padding: 10px;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
-
+    margin: 0px 0 30px 437px;
+    border-radius: 30px;
+    height: 100%;
+    flex-wrap: wrap;
 }
 
-.goal_button {
-    width: 178px;
+.headerUP {
+    margin: 0 0 0 300px;
 }
 
 .goal_setting {
-    border: 2px solid black;
+    border: 2px solid rgb(230, 229, 229);
     width: 400px;
     padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
 }
 
 .filling_form {
-    border: 2px solid black;
+    border: 2px solid rgb(230, 229, 229);
     width: 400px;
-    padding: 30px;
+    padding: 20px 20px 20px 30px;
     margin: 0 0 0 10px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: left;
+    background-color:rgb(255, 253, 246);
+    opacity: 0.7;
 }
 
-.show_schem {
-    margin: 10px 0 0 0;
-}
-
-.plitka {
-    border: 1px solid rgb(148, 141, 141);
-    padding: 5px;
-}
-
-.show_schem {
-    margin: 10px 0 0 60px;
-    width: 178px;
+.replenishment_summ, .target_input, .target_summ, .percentValue, .goal_term, .percent_sub {
+    border: 1px solid rgb(243, 236, 227);
+    margin: 10px 0 0 0px;
+    width: 208px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: rgb(255, 253, 249);
+    padding: 0 0 0 20px;
+    outline: none;
+    font-size: 17px;
 }
 
 .replenishment_summ {
-    margin: 0 0 0 10px;
+    padding: 0 0 0 80px;
+    width: 150px;
+}
+
+.target_input {
+    padding: 0 0 0 80px;
+    width: 150px;
+}
+
+.target_summ {
+    padding: 0 0 0 70px;
+    width: 160px;
+}
+
+.goal_term {
+    padding: 0 51px 0 69px;
+    width: 108px;
+    font-size: 11px;
+}
+
+.percent_sub {
+    padding: 0 0 0 90px;
+    width: 130px;
+}
+
+.deleteTar {
+    width: 208px;
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    margin: 20px 0 0 0px;
+    border: 1px solid rgba(206, 199, 189, 0.911);
+}
+
+.calculate_target {
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    width: 208px;
+    margin: 6px 0 0 79px;
+    border: 1px solid rgb(206, 199, 189);
+}
+
+.show_schem {
+    margin: 20px 0 0 0px;
+    width: 208px;
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    border: 1px solid rgb(206, 199, 189);
+}
+
+.header_input {
+    margin: 0px 0 2px 66px;
+    font-weight: 600;
+}
+
+.one {
+    margin: 0px 0 2px 96px;
+}
+
+.two {
+    margin: 0px 0 2px 106px;
+}
+
+.three {
+    margin: 0px 0 2px 61px;
+}
+
+.four {
+    margin: 0px 0 2px 85px;
+}
+
+.five {
+    margin: 0px 0 2px 80px;
+}
+
+.goal_name, .goal_summ, .start_summ, .percent, .goal_term_sub {
+    border: 1px solid rgb(243, 236, 227);
+    margin: 2px 0 9px 65px;
+    width: 208px;
+    height: 23px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 0 0 0 20px;
+    outline: none;
+    font-size: 17px;
+}
+
+.goal_name {
+    padding: 0 0 0 80px;
+    width: 150px;
+}
+
+.percent {
+    padding: 0 0 0 100px;
+    width: 130px;
+}
+
+.start_summ {
+    padding: 0 0 0 80px;
+    width: 150px;
+}
+
+.goal_summ {
+    padding: 0 0 0 70px;
+    width: 160px;
+}
+
+.goal_term_sub {
+    padding: 0 51px 0 69px;
+    width: 108px;
+    font-size: 11px;
+}
+
+h1 {
+    font-size: 75px;
+    margin: -264px 0 8px 283px;
+    color: rgb(155, 146, 113);
+}
+
+h2 {
+    font-size: 49px;
+    margin: -9px 0 40px 528px;
+    color: rgb(167, 159, 130);
+}
+
+.spitch {
+    font-size: 17px;
+    margin: -38px 0 55px 526px;
+    color: rgb(167, 159, 130);
+}
+
+.phone_1 {
+    width: 400px;
+    margin: 16px 0 0 1000px;
+}
+
+.footer {
+    margin: 0 0 0 300px;
+}
+
+.phone_2 {
+    margin: -200px 0 0 67px;
+    width: 411px;
+}
+
+.phone_3 {
+    margin: -400px 0 0 707px;
+    width: 511px;
+}
+
+.cards {
+    width: 200px;
+    opacity: 1.0;
+    margin: 0 0 -100px -1171px;
+}
+
+li {
+    list-style-type: none;
+    color:rgb(80, 71, 41);
+    margin: 0 0 0 -40px;
+    font-size: 20px;
+    
+}
+
+li:before {
+    content: "-";
+    padding-right: 10px;
 }
