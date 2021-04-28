@@ -1,44 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.conteiner_boss {
+    margin: 0 auto;
+}
+
 .conteiner {
-    border: 1px solid rgb(102, 100, 100);
-    width: 850px;
+    border: 1px solid rgb(250, 247, 247);
+    width: 950px;
     padding: 10px;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
-
-}
-
-.goal_button {
-    width: 178px;
-}
-
-.goal_setting {
-    border: 2px solid black;
-    width: 400px;
-    padding: 30px;
-}
-
-.filling_form {
-    border: 2px solid black;
-    width: 400px;
-    padding: 30px;
-    margin: 0 0 0 10px;
-}
-
-.show_schem {
-    margin: 10px 0 0 0;
+    margin: 0px 0 30px 437px;
+    border-radius: 30px;
+    height: 100%;
+    flex-wrap: wrap;
 }
 
 .plitka {
-    border: 1px solid rgb(148, 141, 141);
-    padding: 5px;
+    height: 100%;
+}
+
+.headerUP {
+    margin: 0 0 0 300px;
+}
+
+.goal_setting {
+    border: 2px solid rgb(230, 229, 229);
+    width: 400px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 307px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
+}
+
+.filling_form {
+    border: 2px solid rgb(230, 229, 229);
+    width: 400px;
+    padding: 30px;
+    margin: 0 0 0 10px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: left;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
+}
+
+.replenishment_summ, .target_input, .target_summ, .percentValue, .goal_term, .percent_sub {
+    border: 1px solid rgb(243, 236, 227);
+    margin: 10px 0 0 0px;
+    width: 208px;
+    height: 25px;
+    border-radius: 10px;
+    background-color: rgb(255, 253, 249);
+    padding: 0 0 0 20px;
+    outline: none;
+    font-size: 17px;
+}
+
+.goal_term {
+    padding: 0 51px 0 69px;
+    width: 108px;
+    font-size: 11px;
+}
+
+.deleteTar {
+    width: 208px;
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    margin: 20px 0 0 0px;
+    border: 1px solid rgba(206, 199, 189, 0.911);
+}
+
+.calculate_target {
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    width: 208px;
+    margin: 15px 0 0 79px;
+    border: 1px solid rgb(206, 199, 189);
 }
 
 .show_schem {
-    margin: 10px 0 0 60px;
-    width: 178px;
+    margin: 20px 0 0 0px;
+    width: 208px;
+    border-radius: 10px;
+    height: 25px;
+    background-color: rgba(243, 242, 241, 0.877);
+    border: 1px solid rgb(206, 199, 189);
 }
 
-.replenishment_summ {
-    margin: 0 0 0 10px;
+.header_input {
+    margin: 0px 0 7px 66px;
+}
+
+.one {
+    margin: 0px 0 7px 96px;
+}
+
+.two {
+    margin: 0px 0 7px 106px;
+}
+
+.three {
+    margin: 0px 0 7px 61px;
+}
+
+.four {
+    margin: 0px 0 7px 85px;
+}
+
+.five {
+    margin: 0px 0 7px 80px;
+}
+
+.goal_name, .goal_summ, .start_summ, .percent, .goal_term_sub {
+    border: 1px solid rgb(243, 236, 227);
+    margin: 11px 0 11px 65px;
+    width: 208px;
+    height: 23px;
+    border-radius: 10px;
+    background-color: rgb(255, 253, 249);
+    padding: 0 0 0 20px;
+    outline: none;
+    font-size: 17px;
+}
+
+.goal_term_sub {
+    padding: 0 51px 0 69px;
+    width: 108px;
+    font-size: 11px;
+}
+
+h1 {
+    font-size: 59px;
+    margin: -186px 0 0 444px;
+    color: rgb(155, 146, 113);
+}
+
+h2 {
+    font-size: 46px;
+    margin: -5px 0 40px 521px;
+    color: rgb(167, 159, 130);
+}
+
+.phone_1 {
+    width: 400px;
+    margin: 16px 0 0 1000px;
+}
+
+.footer {
+    margin: 0 0 0 300px;
+}
+
+.phone_2 {
+    margin: -200px 0 0 67px;
+    width: 411px;
+}
+
+.phone_3 {
+    margin: -400px 0 0 707px;
+    width: 511px;
 }
